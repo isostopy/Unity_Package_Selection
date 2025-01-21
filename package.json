@@ -15,7 +15,7 @@
 			{
 				"displayName":"Usage Sample",
 				"description":"Escena que muestra el funcionamiento básico.",
-				"path":"Samples/UsageSample"
+				"path":"Samples~/UsageSample"
 			}
 		]
 }
