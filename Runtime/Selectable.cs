@@ -12,7 +12,7 @@ namespace Isostopy.Selection
         public event Action<Selectable> OnHoverEnter;
         public event Action<Selectable> OnHoverExit;
 
-        public bool isSelected;
+        [HideInInspector] public bool isSelected;
 
         public void Select()
         {
