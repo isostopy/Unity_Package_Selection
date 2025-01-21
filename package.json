@@ -1,0 +1,21 @@
+{
+    "name":"com.isostopy.selection",
+    "version": "1.0.0",
+    "displayName": "Isostopy Selection",
+    "description": "Basic selection system.",
+    "author": 
+    {
+        "name": "isostopy",
+        "email": "software@isostopy.com",
+        "url": "https://isostopy.com"
+    },
+    
+    "samples":
+		[
+			{
+				"displayName":"Usage Sample",
+				"description":"Escena que muestra el funcionamiento básico.",
+				"path":"Samples/UsageSample"
+			}
+		]
+}
