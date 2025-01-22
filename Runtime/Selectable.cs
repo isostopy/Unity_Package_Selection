@@ -16,10 +16,12 @@ namespace Isostopy.Selection
 
         public void Select()
         {
+            isSelected = true;
             OnSelect?.Invoke(this);
         }
         public void Deselect()
         {
+            isSelected = false;
             OnDeselect?.Invoke(this);
         }
 

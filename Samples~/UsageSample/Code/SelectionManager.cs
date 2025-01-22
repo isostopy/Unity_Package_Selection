@@ -42,7 +42,6 @@ namespace Isostopy.Selection.Sample
 
         private void Select(Selectable selectable)
         {
-            Debug.Log(selectable.name + " selected");
 
             if (currentSelected == selectable)
             {
@@ -50,10 +49,13 @@ namespace Isostopy.Selection.Sample
                 return;
             }
 
-            if (currentSelected != null) Deselect();
+            if (currentSelected != null)
+            {
+                Deselect();
+            }
 
+            Debug.Log(selectable.name + " selected");
             currentSelected = selectable;
-            currentSelected.isSelected = true;
 
         }
 
@@ -62,19 +64,18 @@ namespace Isostopy.Selection.Sample
             Debug.Log(currentSelected.name + " deselected");
 
             currentSelected.Deselect();
-            currentSelected.isSelected = false;
             currentSelected = null;
 
         }
 
         private void HoverEnter(Selectable selectable)
         {
-            Debug.Log(selectable.name + " hover enter");
+            //Debug.Log(selectable.name + " hover enter");
         }
 
         private void HoverExit(Selectable selectable)
         {
-            Debug.Log(selectable.name + " hover exit");
+            //Debug.Log(selectable.name + " hover exit");
         }
     }
 

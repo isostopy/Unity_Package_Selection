@@ -5,11 +5,11 @@ namespace Isostopy.Selection
 {
     public class Highlightable : MonoBehaviour
     {
-        [SerializeField] SelectionMaterials selectionMaterials;
+        [SerializeField] protected SelectionMaterials selectionMaterials;
 
         Material[] defaultMaterials;
-        Renderer rendererComponent;
-        Selectable selectable;
+        protected Renderer rendererComponent;
+        protected Selectable selectable;
 
         #region Subscription Management
 
@@ -40,12 +40,12 @@ namespace Isostopy.Selection
             defaultMaterials = rendererComponent.materials;
         }
 
-        public void SetDefaultMaterials()
+        private void SetDefaultMaterials()
         {
             rendererComponent.materials = defaultMaterials;
         }
 
-        public void SetMaterial(Material material)
+        private void SetMaterial(Material material)
         {
             List<Material> unicMaterialList = new List<Material>();
 
@@ -58,22 +58,24 @@ namespace Isostopy.Selection
 
         }
 
-        private void Select(Selectable selectable)
+        #region Binded Functions
+
+        protected virtual void Select(Selectable selectable)
         {
             SetMaterial(selectionMaterials.selectedMaterial);
         }
 
-        private void Deselect(Selectable selectable)
+        protected virtual void Deselect(Selectable selectable)
         {
             SetDefaultMaterials();
         }
 
-        private void HoverEnter(Selectable selectable)
+        protected virtual void HoverEnter(Selectable selectable)
         {
             SetMaterial(selectionMaterials.hoverMaterial);
         }
 
-        private void HoverExit(Selectable selectable)
+        protected virtual void HoverExit(Selectable selectable)
         {
             if (selectable.isSelected)
             {
@@ -84,6 +86,8 @@ namespace Isostopy.Selection
                 SetDefaultMaterials();
             }
         }
+
+        #endregion
 
     }
 

@@ -259,7 +259,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 310597855}
-        m_TargetAssemblyTypeName: Selectable, Assembly-CSharp
+        m_TargetAssemblyTypeName: Isostopy.Selection.Selectable, Isostopy.Selection
         m_MethodName: Select
         m_Mode: 1
         m_Arguments:
@@ -274,7 +274,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 310597855}
-        m_TargetAssemblyTypeName: Selectable, Assembly-CSharp
+        m_TargetAssemblyTypeName: Isostopy.Selection.Selectable, Isostopy.Selection
         m_MethodName: HoverEnter
         m_Mode: 1
         m_Arguments:
@@ -289,7 +289,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 310597855}
-        m_TargetAssemblyTypeName: Selectable, Assembly-CSharp
+        m_TargetAssemblyTypeName: Isostopy.Selection.Selectable, Isostopy.Selection
         m_MethodName: HoverExit
         m_Mode: 1
         m_Arguments:
@@ -351,7 +351,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 890325711}
-        m_TargetAssemblyTypeName: Selectable, Assembly-CSharp
+        m_TargetAssemblyTypeName: Isostopy.Selection.Selectable, Isostopy.Selection
         m_MethodName: Select
         m_Mode: 1
         m_Arguments:
@@ -366,7 +366,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 890325711}
-        m_TargetAssemblyTypeName: Selectable, Assembly-CSharp
+        m_TargetAssemblyTypeName: Isostopy.Selection.Selectable, Isostopy.Selection
         m_MethodName: HoverEnter
         m_Mode: 1
         m_Arguments:
@@ -381,7 +381,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 890325711}
-        m_TargetAssemblyTypeName: Selectable, Assembly-CSharp
+        m_TargetAssemblyTypeName: Isostopy.Selection.Selectable, Isostopy.Selection
         m_MethodName: HoverExit
         m_Mode: 1
         m_Arguments:
@@ -1045,7 +1045,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1922364306}
-        m_TargetAssemblyTypeName: Selectable, Assembly-CSharp
+        m_TargetAssemblyTypeName: Isostopy.Selection.Selectable, Isostopy.Selection
         m_MethodName: Select
         m_Mode: 1
         m_Arguments:
@@ -1060,7 +1060,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1922364306}
-        m_TargetAssemblyTypeName: Selectable, Assembly-CSharp
+        m_TargetAssemblyTypeName: Isostopy.Selection.Selectable, Isostopy.Selection
         m_MethodName: HoverEnter
         m_Mode: 1
         m_Arguments:
@@ -1075,7 +1075,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1922364306}
-        m_TargetAssemblyTypeName: Selectable, Assembly-CSharp
+        m_TargetAssemblyTypeName: Isostopy.Selection.Selectable, Isostopy.Selection
         m_MethodName: HoverExit
         m_Mode: 1
         m_Arguments:
@@ -1098,8 +1098,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 074dbe3328a4c8545ba0e8535e31a8cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  box: {fileID: 1103109959}
   selectionMaterials: {fileID: 11400000, guid: 5a414fb5ac88e4541b92a61714f497c9, type: 2}
+  mesh: {fileID: 1103109959}
 --- !u!114 &1922364306
 MonoBehaviour:
   m_ObjectHideFlags: 0
