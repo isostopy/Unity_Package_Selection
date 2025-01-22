@@ -17,23 +17,23 @@ namespace Isostopy.Selection
 
         [HideInInspector] public bool isSelected;
 
-        public void Select()
+        public virtual void Select()
         {
             isSelected = true;
             OnSelect.Invoke(this);
         }
-        public void Deselect()
+        public virtual void Deselect()
         {
             isSelected = false;
             OnDeselect.Invoke(this);
         }
 
-        public void HoverEnter()
+        public virtual void HoverEnter()
         {
             OnHoverEnter.Invoke(this);
         }
 
-        public void HoverExit()
+        public virtual void HoverExit()
         {
             OnHoverExit.Invoke(this);
         }
