@@ -21,9 +21,9 @@ namespace Isostopy.Selection.Sample
             selectableInstances = FindObjectsByType<Selectable>(FindObjectsSortMode.InstanceID);
             foreach (var instance in selectableInstances)
             {
-                instance.OnSelect += Select;
-                instance.OnHoverEnter += HoverEnter;
-                instance.OnHoverExit += HoverExit;
+                instance.OnSelect.AddListener(Select);
+                instance.OnHoverEnter.AddListener(HoverEnter);
+                instance.OnHoverExit.AddListener(HoverExit);
             }
         }
 
@@ -32,9 +32,9 @@ namespace Isostopy.Selection.Sample
             // Unsubscribe from events to prevent memory leaks
             foreach (var instance in selectableInstances)
             {
-                instance.OnSelect -= Select;
-                instance.OnHoverEnter -= HoverEnter;
-                instance.OnHoverExit -= HoverExit;
+                instance.OnSelect.RemoveListener(Select);
+                instance.OnHoverEnter.RemoveListener(HoverEnter);
+                instance.OnHoverExit.RemoveListener(HoverExit);
             }
         }
 

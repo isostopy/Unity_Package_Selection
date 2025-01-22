@@ -3,36 +3,11 @@ using UnityEngine;
 
 namespace Isostopy.Selection
 {
-    public class Highlightable : MonoBehaviour
+    public class HighlightMaterial : Highlight
     {
+
         [SerializeField] protected SelectionMaterials selectionMaterials;
-
         Material[] defaultMaterials;
-        protected Renderer rendererComponent;
-        protected Selectable selectable;
-
-        #region Subscription Management
-
-        private void OnEnable()
-        {
-            selectable = GetComponent<Selectable>();
-
-            selectable.OnSelect += Select;
-            selectable.OnDeselect += Deselect;
-            selectable.OnHoverEnter += HoverEnter;
-            selectable.OnHoverExit += HoverExit;
-
-        }
-
-        private void OnDisable()
-        {
-            selectable.OnSelect -= Select;
-            selectable.OnDeselect -= Deselect;
-            selectable.OnHoverEnter -= HoverEnter;
-            selectable.OnHoverExit -= HoverExit;
-        }
-
-        #endregion
 
         private void Start()
         {
@@ -60,22 +35,22 @@ namespace Isostopy.Selection
 
         #region Binded Functions
 
-        protected virtual void Select(Selectable selectable)
+        override protected void Select(Selectable selectable)
         {
             SetMaterial(selectionMaterials.selectedMaterial);
         }
 
-        protected virtual void Deselect(Selectable selectable)
+        override protected void Deselect(Selectable selectable)
         {
             SetDefaultMaterials();
         }
 
-        protected virtual void HoverEnter(Selectable selectable)
+        override protected void HoverEnter(Selectable selectable)
         {
             SetMaterial(selectionMaterials.hoverMaterial);
         }
 
-        protected virtual void HoverExit(Selectable selectable)
+        override protected void HoverExit(Selectable selectable)
         {
             if (selectable.isSelected)
             {
@@ -90,5 +65,4 @@ namespace Isostopy.Selection
         #endregion
 
     }
-
 }

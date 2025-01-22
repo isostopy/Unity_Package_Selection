@@ -1,38 +1,41 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Isostopy.Selection
 {
 
+    [System.Serializable]
+    public class SelectableEvent : UnityEvent<Selectable> { }
+
     public class Selectable : MonoBehaviour
     {
-        // Declare the event with the sender as a parameter
-        public event Action<Selectable> OnSelect;
-        public event Action<Selectable> OnDeselect;
-        public event Action<Selectable> OnHoverEnter;
-        public event Action<Selectable> OnHoverExit;
+        public SelectableEvent OnSelect;
+        public SelectableEvent OnDeselect;
+        public SelectableEvent OnHoverEnter;
+        public SelectableEvent OnHoverExit;
 
         [HideInInspector] public bool isSelected;
 
         public void Select()
         {
             isSelected = true;
-            OnSelect?.Invoke(this);
+            OnSelect.Invoke(this);
         }
         public void Deselect()
         {
             isSelected = false;
-            OnDeselect?.Invoke(this);
+            OnDeselect.Invoke(this);
         }
 
         public void HoverEnter()
         {
-            OnHoverEnter?.Invoke(this);
+            OnHoverEnter.Invoke(this);
         }
 
         public void HoverExit()
         {
-            OnHoverExit?.Invoke(this);
+            OnHoverExit.Invoke(this);
         }
 
     }

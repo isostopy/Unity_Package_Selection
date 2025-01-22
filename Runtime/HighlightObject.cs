@@ -2,9 +2,10 @@ using UnityEngine;
 
 namespace Isostopy.Selection
 {
-    public class HighlightableMesh : Highlightable
+    public class HighlightObject : Highlight
     {
 
+        [SerializeField] protected SelectionMaterials selectionMaterials;
         [SerializeField] GameObject mesh;
         Material defaultMaterial;
 

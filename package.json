@@ -13,9 +13,9 @@
     "samples":
 		[
 			{
-				"displayName":"Usage Sample",
-				"description":"Escena que muestra el funcionamiento básico.",
-				"path":"Samples~/UsageSample"
+				"displayName":"Usage",
+				"description":"Escena que muestra el funcionamiento.",
+				"path":"Samples~/Usage"
 			}
 		]
 }
