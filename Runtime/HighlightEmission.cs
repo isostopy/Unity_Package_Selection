@@ -37,21 +37,29 @@ namespace Isostopy.Selection
 
         override protected void Select(Selectable selectable)
         {
+            base.Select(selectable);
             SetEmissionColor(selectionColors.selectedColor);
         }
 
         override protected void Deselect(Selectable selectable)
         {
+            base.Deselect(selectable);
             SetNoEmissionColor();
         }
 
         override protected void HoverEnter(Selectable selectable)
         {
+            base.HoverEnter(selectable);
+            if (!useHover) return;
+
             SetEmissionColor(selectionColors.hoverColor);
         }
 
         override protected void HoverExit(Selectable selectable)
         {
+            base.HoverExit(selectable);
+            if (!useHover) return;
+
             if (selectable.isSelected)
             {
                 SetEmissionColor(selectionColors.selectedColor);

@@ -20,7 +20,9 @@ namespace Isostopy.Selection
 
     public abstract class Highlight : MonoBehaviour
     {
-   
+
+        public bool useHover = true;
+
         protected Selectable selectable;
         protected Renderer rendererComponent;
 
@@ -62,7 +64,7 @@ namespace Isostopy.Selection
 
         protected virtual void HoverEnter(Selectable selectable)
         {
-
+            
         }
 
         protected virtual void HoverExit(Selectable selectable)

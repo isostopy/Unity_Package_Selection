@@ -324,6 +324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7907a878307ae5d47bc207ee3e9866b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useHover: 1
   selectionMaterials: {fileID: 11400000, guid: 7697799adb8b25149b77a137b28c0802, type: 2}
 --- !u!1 &623112208
 GameObject:
@@ -441,6 +442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5efac5f5bfcc4a7478881bf7a2056e74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useHover: 1
   selectionColors: {fileID: 11400000, guid: 52eaf1470656eb246bec0650e8f05328, type: 2}
 --- !u!65 &623112212
 BoxCollider:
@@ -711,6 +713,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7907a878307ae5d47bc207ee3e9866b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useHover: 0
   selectionMaterials: {fileID: 11400000, guid: 7697799adb8b25149b77a137b28c0802, type: 2}
 --- !u!114 &890325717
 MonoBehaviour:
@@ -1328,6 +1331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 074dbe3328a4c8545ba0e8535e31a8cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useHover: 1
   selectionMaterials: {fileID: 11400000, guid: fd5b65ba3ebd14842bc0be94038f908b, type: 2}
   mesh: {fileID: 1103109959}
 --- !u!114 &1922364306

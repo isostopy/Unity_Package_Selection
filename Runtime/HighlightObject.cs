@@ -35,6 +35,8 @@ namespace Isostopy.Selection
 
         override protected void Select(Selectable selectable)
         {
+            base.Select(selectable);
+
             if (selectable.isSelected)
             {
                 ShowMesh(true);
@@ -45,18 +47,25 @@ namespace Isostopy.Selection
 
         override protected void Deselect(Selectable selectable)
         {
+            base.Deselect(selectable);
             ShowMesh(false);
         }
 
         override protected void HoverEnter(Selectable selectable)
         {
+            base.HoverEnter(selectable);
+            if (!useHover) return;
+
             ShowMesh(true);
             SetMaterial(selectionMaterials.hoverMaterial);
         }
 
         override protected void HoverExit(Selectable selectable)
         {
-            if(selectable.isSelected)
+            base.HoverExit(selectable);
+            if (!useHover) return;
+
+            if (selectable.isSelected)
             {
                 SetDefaultMaterial();
             } 

@@ -37,21 +37,29 @@ namespace Isostopy.Selection
 
         override protected void Select(Selectable selectable)
         {
+            base.Select(selectable);
             SetMaterial(selectionMaterials.selectedMaterial);
         }
 
         override protected void Deselect(Selectable selectable)
         {
+            base.Deselect(selectable);
             SetDefaultMaterials();
         }
 
         override protected void HoverEnter(Selectable selectable)
         {
+            base.HoverEnter(selectable);
+            if (!useHover) return;
+
             SetMaterial(selectionMaterials.hoverMaterial);
         }
 
         override protected void HoverExit(Selectable selectable)
         {
+            base.HoverExit(selectable);
+            if (!useHover) return;
+
             if (selectable.isSelected)
             {
                 SetMaterial(selectionMaterials.selectedMaterial);
