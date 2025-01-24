@@ -50,12 +50,21 @@ namespace Isostopy.Selection
 
         override protected void HoverEnter(Selectable selectable)
         {
+            ShowMesh(true);
             SetMaterial(selectionMaterials.hoverMaterial);
         }
 
         override protected void HoverExit(Selectable selectable)
         {
-            SetDefaultMaterial();   
+            if(selectable.isSelected)
+            {
+                SetDefaultMaterial();
+            } 
+            else
+            {
+                ShowMesh(false);
+            }
+             
         }
 
         #endregion
