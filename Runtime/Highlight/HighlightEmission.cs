@@ -2,14 +2,17 @@ using UnityEngine;
 
 namespace Isostopy.Selection
 {
+	/// <summary>
+	/// Resalta un <see cref="Selectable"/> cambiando el color del emission. </summary>
 
     public class HighlightEmission : Highlight
     {
-
         [SerializeField] protected SelectionColors selectionColors;
 
 
-        private void Start()
+		// ----------------------------------------------------------------------------
+
+		private void Start()
         {
             rendererComponent = GetComponent<Renderer>();
 
@@ -17,7 +20,10 @@ namespace Isostopy.Selection
             rendererComponent.material.globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
         }
 
-        private void SetEmissionColor(Color color)
+
+		// ----------------------------------------------------------------------------
+
+		private void SetEmissionColor(Color color)
         {
             foreach (Material mat in rendererComponent.materials)
             {
@@ -33,9 +39,11 @@ namespace Isostopy.Selection
             }
         }
 
-        #region Binded Functions
 
-        override protected void Select(Selectable selectable)
+		// ----------------------------------------------------------------------------
+		#region Binded Functions
+
+		override protected void Select(Selectable selectable)
         {
             base.Select(selectable);
             SetEmissionColor(selectionColors.selectedColor);

@@ -3,13 +3,13 @@ using UnityEngine.Events;
 
 namespace Isostopy.Selection.Sample
 {
-
+	/// <summary> Dispara eventos con los mensajes del raton de Unity. </summary>
     public class MouseEvents : MonoBehaviour
     {
-
         public UnityEvent OnMouseDownEvent;
         public UnityEvent OnMouseEnterEvent;
         public UnityEvent OnMouseExitEvent;
+
 
         private void OnMouseDown()
         {
@@ -27,5 +27,4 @@ namespace Isostopy.Selection.Sample
         }
 
     }
-
 }

@@ -3,19 +3,27 @@ using UnityEngine;
 
 namespace Isostopy.Selection
 {
+	/// <summary>
+	/// Resalta un <see cref="Selectable"/> intercambiando materiales. </summary>
+
     public class HighlightMaterial : Highlight
     {
-
         [SerializeField] protected SelectionMaterials selectionMaterials;
         Material[] defaultMaterials;
 
-        private void Start()
+
+		// ----------------------------------------------------------------------------
+
+		private void Start()
         {
             rendererComponent = GetComponent<Renderer>();
             defaultMaterials = rendererComponent.materials;
         }
 
-        private void SetDefaultMaterials()
+
+		// ----------------------------------------------------------------------------
+
+		private void SetDefaultMaterials()
         {
             rendererComponent.materials = defaultMaterials;
         }
@@ -33,9 +41,11 @@ namespace Isostopy.Selection
 
         }
 
-        #region Binded Functions
 
-        override protected void Select(Selectable selectable)
+		// ----------------------------------------------------------------------------
+		#region Binded Functions
+
+		override protected void Select(Selectable selectable)
         {
             base.Select(selectable);
             SetMaterial(selectionMaterials.selectedMaterial);
@@ -71,6 +81,5 @@ namespace Isostopy.Selection
         }
 
         #endregion
-
     }
 }

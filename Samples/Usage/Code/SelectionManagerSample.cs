@@ -2,28 +2,25 @@ using UnityEngine;
 
 namespace Isostopy.Selection.Sample
 {
-    public class SelectionManager : MonoBehaviour
+	/// <summary>
+	/// Una muestra de un posible manager que solo permite tener seleccionado un objeto al mismo tiempo. </summary>
+
+    public class SelectionManagerSample : MonoBehaviour
     {
-        public Material onHoverMaterial;
-        public Material selectedMaterial;
-
-        public Material onHoverBoxMaterial;
-
         Selectable[] selectableInstances;
-
         Selectable currentSelected;
 
-        #region Subscription Management
 
-        private void OnEnable()
+		// ----------------------------------------------------------------------------
+		#region Subscription Management
+
+		private void OnEnable()
         {
             // Subscribe to events from all instances
             selectableInstances = FindObjectsByType<Selectable>(FindObjectsSortMode.InstanceID);
             foreach (var instance in selectableInstances)
             {
                 instance.OnSelect.AddListener(Select);
-                instance.OnHoverEnter.AddListener(HoverEnter);
-                instance.OnHoverExit.AddListener(HoverExit);
             }
         }
 
@@ -33,14 +30,14 @@ namespace Isostopy.Selection.Sample
             foreach (var instance in selectableInstances)
             {
                 instance.OnSelect.RemoveListener(Select);
-                instance.OnHoverEnter.RemoveListener(HoverEnter);
-                instance.OnHoverExit.RemoveListener(HoverExit);
             }
         }
 
-        #endregion
+		#endregion
 
-        private void Select(Selectable selectable)
+
+		// ----------------------------------------------------------------------------
+		private void Select(Selectable selectable)
         {
 
             if (currentSelected == selectable)
@@ -67,16 +64,5 @@ namespace Isostopy.Selection.Sample
             currentSelected = null;
 
         }
-
-        private void HoverEnter(Selectable selectable)
-        {
-            //Debug.Log(selectable.name + " hover enter");
-        }
-
-        private void HoverExit(Selectable selectable)
-        {
-            //Debug.Log(selectable.name + " hover exit");
-        }
     }
-
 }

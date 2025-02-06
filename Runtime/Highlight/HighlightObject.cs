@@ -2,6 +2,14 @@ using UnityEngine;
 
 namespace Isostopy.Selection
 {
+	/// <summary>
+	/// Resalta un <see cref="Selectable"/> activando un objeto y luego a ese objeto se le intercambian los materiales.
+	///	<para></para> Es decir:
+	///	<br/> Al hacer hover o seleccionar el Selectable se activa un game object.
+	///	<br/> A ese game object se le intercambian los materiales para mostrar si esta haciendo hover o seleccionando el Selectable.
+	///	<br/> Si no se esta haciendo hover ni esta seleccionado el Selectable, ese game object esta desactivado.
+	/// </summary>
+
     public class HighlightObject : Highlight
     {
 
