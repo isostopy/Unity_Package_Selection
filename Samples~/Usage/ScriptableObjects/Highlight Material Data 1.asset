@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: SelectionMeshMaterials
+  m_Script: {fileID: 11500000, guid: b01244d6e19b8e444943a29a869bdf05, type: 3}
+  m_Name: Highlight Material Data 1
   m_EditorClassIdentifier: Isostopy.Selection:Isostopy.Selection:SelectionMaterials
-  hoverMaterial: {fileID: 2100000, guid: 2b8104355aac0144ba003c70e66a643f, type: 2}
-  selectedMaterial: {fileID: 2100000, guid: 6e24855e56bae104f9a9019232c5e5d1, type: 2}
+  hoverMaterial: {fileID: 2100000, guid: 342e875b05254ae43a51337290f19e4d, type: 2}
+  selectedMaterial: {fileID: 2100000, guid: ccefa78f2f5705148acb988fe1bbd528, type: 2}

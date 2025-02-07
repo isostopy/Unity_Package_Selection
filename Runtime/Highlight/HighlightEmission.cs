@@ -7,7 +7,7 @@ namespace Isostopy.Selection
 
     public class HighlightEmission : Highlight
     {
-        [SerializeField] protected SelectionColors selectionColors;
+        [SerializeField] protected HighlightColorData selectionColors;
 
 
 		// ----------------------------------------------------------------------------
@@ -43,32 +43,28 @@ namespace Isostopy.Selection
 		// ----------------------------------------------------------------------------
 		#region Binded Functions
 
-		override protected void Select(Selectable selectable)
+		override protected void Select(PointerInteractable selectable)
         {
-            base.Select(selectable);
             SetEmissionColor(selectionColors.selectedColor);
         }
 
-        override protected void Deselect(Selectable selectable)
+        override protected void Deselect(PointerInteractable selectable)
         {
-            base.Deselect(selectable);
             SetNoEmissionColor();
         }
 
-        override protected void HoverEnter(Selectable selectable)
+        override protected void HoverEnter(PointerInteractable selectable)
         {
-            base.HoverEnter(selectable);
             if (!useHover) return;
 
             SetEmissionColor(selectionColors.hoverColor);
         }
 
-        override protected void HoverExit(Selectable selectable)
+        override protected void HoverExit(PointerInteractable selectable)
         {
-            base.HoverExit(selectable);
             if (!useHover) return;
 
-            if (selectable.isSelected)
+            if ((selectable as Selectable).isSelected)
             {
                 SetEmissionColor(selectionColors.selectedColor);
             }
@@ -80,5 +76,4 @@ namespace Isostopy.Selection
 
         #endregion
     }
-
 }

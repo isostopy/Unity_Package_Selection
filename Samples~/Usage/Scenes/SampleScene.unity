@@ -122,6 +122,54 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &193271270
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 193271272}
+  - component: {fileID: 193271271}
+  m_Layer: 0
+  m_Name: Desktop Raycaster
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &193271271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 193271270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ada28fa03533534b9a9d078156abd1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDistance: 100
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!4 &193271272
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 193271270}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &310597846
 GameObject:
   m_ObjectHideFlags: 0
@@ -131,12 +179,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 310597850}
+  - component: {fileID: 310597855}
+  - component: {fileID: 310597847}
   - component: {fileID: 310597849}
   - component: {fileID: 310597848}
-  - component: {fileID: 310597847}
-  - component: {fileID: 310597855}
   - component: {fileID: 310597856}
-  - component: {fileID: 310597854}
   m_Layer: 0
   m_Name: Highlight Material
   m_TagString: Untagged
@@ -230,63 +277,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &310597854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 310597846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f9cfef675da332429642530a4f46976, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnMouseDownEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 310597855}
-        m_TargetAssemblyTypeName: Isostopy.Selection.Selectable, Isostopy.Selection
-        m_MethodName: Select
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnMouseEnterEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 310597855}
-        m_TargetAssemblyTypeName: Isostopy.Selection.Selectable, Isostopy.Selection
-        m_MethodName: HoverEnter
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnMouseExitEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 310597855}
-        m_TargetAssemblyTypeName: Isostopy.Selection.Selectable, Isostopy.Selection
-        m_MethodName: HoverExit
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &310597855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,16 +289,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dd71693d8df1bd4b9992f1da992a814, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnHoverEnter:
+  onHoverEnter:
     m_PersistentCalls:
       m_Calls: []
-  OnHoverExit:
+  onHoverExit:
     m_PersistentCalls:
       m_Calls: []
-  OnSelect:
+  onPressDown:
     m_PersistentCalls:
       m_Calls: []
-  OnDeselect:
+  onPressUp:
+    m_PersistentCalls:
+      m_Calls: []
+  onClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onSelect:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeselect:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &310597856
@@ -324,7 +323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useHover: 1
-  selectionMaterials: {fileID: 11400000, guid: 7697799adb8b25149b77a137b28c0802, type: 2}
+  selectionMaterials: {fileID: 11400000, guid: 088e96fab7b8f9f42a3548e056caeb7f, type: 2}
 --- !u!1 &429018699
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,12 +364,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 623112215}
+  - component: {fileID: 623112210}
+  - component: {fileID: 623112212}
   - component: {fileID: 623112214}
   - component: {fileID: 623112213}
-  - component: {fileID: 623112212}
-  - component: {fileID: 623112210}
   - component: {fileID: 623112211}
-  - component: {fileID: 623112209}
   m_Layer: 0
   m_Name: Highlight Emission
   m_TagString: Untagged
@@ -378,63 +376,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &623112209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 623112208}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f9cfef675da332429642530a4f46976, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnMouseDownEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 623112210}
-        m_TargetAssemblyTypeName: Isostopy.Selection.Selectable, Isostopy.Selection
-        m_MethodName: Select
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnMouseEnterEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 623112210}
-        m_TargetAssemblyTypeName: Isostopy.Selection.Selectable, Isostopy.Selection
-        m_MethodName: HoverEnter
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnMouseExitEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 623112210}
-        m_TargetAssemblyTypeName: Isostopy.Selection.Selectable, Isostopy.Selection
-        m_MethodName: HoverExit
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &623112210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -447,16 +388,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dd71693d8df1bd4b9992f1da992a814, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnHoverEnter:
+  onHoverEnter:
     m_PersistentCalls:
       m_Calls: []
-  OnHoverExit:
+  onHoverExit:
     m_PersistentCalls:
       m_Calls: []
-  OnSelect:
+  onPressDown:
     m_PersistentCalls:
       m_Calls: []
-  OnDeselect:
+  onPressUp:
+    m_PersistentCalls:
+      m_Calls: []
+  onClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onSelect:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeselect:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &623112211
@@ -568,12 +518,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 890325715}
+  - component: {fileID: 890325717}
+  - component: {fileID: 890325712}
   - component: {fileID: 890325714}
   - component: {fileID: 890325713}
-  - component: {fileID: 890325712}
-  - component: {fileID: 890325717}
   - component: {fileID: 890325716}
-  - component: {fileID: 890325709}
   m_Layer: 0
   m_Name: Highlight Material | No Hover
   m_TagString: Untagged
@@ -581,63 +530,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &890325709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 890325708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f9cfef675da332429642530a4f46976, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnMouseDownEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 890325717}
-        m_TargetAssemblyTypeName: Isostopy.Selection.Selectable, Isostopy.Selection
-        m_MethodName: Select
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnMouseEnterEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 890325717}
-        m_TargetAssemblyTypeName: Isostopy.Selection.Selectable, Isostopy.Selection
-        m_MethodName: HoverEnter
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnMouseExitEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 890325717}
-        m_TargetAssemblyTypeName: Isostopy.Selection.Selectable, Isostopy.Selection
-        m_MethodName: HoverExit
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!65 &890325712
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -737,7 +629,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useHover: 0
-  selectionMaterials: {fileID: 11400000, guid: 7697799adb8b25149b77a137b28c0802, type: 2}
+  selectionMaterials: {fileID: 11400000, guid: 088e96fab7b8f9f42a3548e056caeb7f, type: 2}
 --- !u!114 &890325717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -750,18 +642,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dd71693d8df1bd4b9992f1da992a814, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnHoverEnter:
+  onHoverEnter:
     m_PersistentCalls:
       m_Calls: []
-  OnHoverExit:
+  onHoverExit:
     m_PersistentCalls:
       m_Calls: []
-  OnSelect:
+  onPressDown:
     m_PersistentCalls:
       m_Calls: []
-  OnDeselect:
+  onPressUp:
     m_PersistentCalls:
       m_Calls: []
+  onClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onSelect:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeselect:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!1 &985516876
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 985516877}
+  m_Layer: 0
+  m_Name: -------------------
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &985516877
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985516876}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &995592541
 GameObject:
   m_ObjectHideFlags: 0
@@ -928,7 +860,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1103109960
 Transform:
   m_ObjectHideFlags: 0
@@ -1006,6 +938,7 @@ GameObject:
   - component: {fileID: 1263759700}
   - component: {fileID: 1263759699}
   - component: {fileID: 1263759702}
+  - component: {fileID: 1263759703}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1131,6 +1064,22 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &1263759703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1263759698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c49b4cc203aa6414fae5c798d1d0e7d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_MaxRayIntersections: 0
 --- !u!1 &1440097612
 GameObject:
   m_ObjectHideFlags: 0
@@ -1290,12 +1239,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1922364310}
+  - component: {fileID: 1922364306}
+  - component: {fileID: 1922364307}
   - component: {fileID: 1922364309}
   - component: {fileID: 1922364308}
-  - component: {fileID: 1922364307}
-  - component: {fileID: 1922364306}
   - component: {fileID: 1922364305}
-  - component: {fileID: 1922364304}
   m_Layer: 0
   m_Name: Highlight Object
   m_TagString: Untagged
@@ -1303,63 +1251,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1922364304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1922364303}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f9cfef675da332429642530a4f46976, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnMouseDownEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1922364306}
-        m_TargetAssemblyTypeName: Isostopy.Selection.Selectable, Isostopy.Selection
-        m_MethodName: Select
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnMouseEnterEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1922364306}
-        m_TargetAssemblyTypeName: Isostopy.Selection.Selectable, Isostopy.Selection
-        m_MethodName: HoverEnter
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnMouseExitEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1922364306}
-        m_TargetAssemblyTypeName: Isostopy.Selection.Selectable, Isostopy.Selection
-        m_MethodName: HoverExit
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1922364305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1387,16 +1278,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dd71693d8df1bd4b9992f1da992a814, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnHoverEnter:
+  onHoverEnter:
     m_PersistentCalls:
       m_Calls: []
-  OnHoverExit:
+  onHoverExit:
     m_PersistentCalls:
       m_Calls: []
-  OnSelect:
+  onPressDown:
     m_PersistentCalls:
       m_Calls: []
-  OnDeselect:
+  onPressUp:
+    m_PersistentCalls:
+      m_Calls: []
+  onClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onSelect:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeselect:
     m_PersistentCalls:
       m_Calls: []
 --- !u!65 &1922364307
@@ -1494,9 +1394,11 @@ SceneRoots:
   - {fileID: 1096041518}
   - {fileID: 1799818831}
   - {fileID: 995592542}
+  - {fileID: 193271272}
   - {fileID: 1440097614}
   - {fileID: 429018700}
   - {fileID: 310597850}
   - {fileID: 890325715}
   - {fileID: 1922364310}
   - {fileID: 623112215}
+  - {fileID: 985516877}

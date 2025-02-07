@@ -8,11 +8,10 @@ namespace Isostopy.Selection.Sample
     public class SelectionManagerSample : MonoBehaviour
     {
         Selectable[] selectableInstances;
-        Selectable currentSelected;
+        Selectable currentlySelected;
 
 
 		// ----------------------------------------------------------------------------
-		#region Subscription Management
 
 		private void OnEnable()
         {
@@ -20,7 +19,8 @@ namespace Isostopy.Selection.Sample
             selectableInstances = FindObjectsByType<Selectable>(FindObjectsSortMode.InstanceID);
             foreach (var instance in selectableInstances)
             {
-                instance.OnSelect.AddListener(Select);
+                instance.onSelect.AddListener(OnSelected);
+				instance.onDeselect.AddListener(OnDeselected);
             }
         }
 
@@ -29,40 +29,29 @@ namespace Isostopy.Selection.Sample
             // Unsubscribe from events to prevent memory leaks
             foreach (var instance in selectableInstances)
             {
-                instance.OnSelect.RemoveListener(Select);
+                instance.onSelect.RemoveListener(OnSelected);
+				instance.onDeselect.RemoveListener(OnDeselected);
             }
         }
-
-		#endregion
 
 
 		// ----------------------------------------------------------------------------
-		private void Select(Selectable selectable)
+
+		private void OnSelected(Selectable selectable)
         {
-
-            if (currentSelected == selectable)
+            if (currentlySelected != null)
             {
-                Deselect();
-                return;
-            }
-
-            if (currentSelected != null)
-            {
-                Deselect();
-            }
-
-            Debug.Log(selectable.name + " selected");
-            currentSelected = selectable;
-
+				currentlySelected.Deselect();
+			}
+            currentlySelected = selectable;
         }
 
-        private void Deselect()
+        private void OnDeselected(Selectable selectable)
         {
-            Debug.Log(currentSelected.name + " deselected");
+			if (selectable != currentlySelected)
+				return;
 
-            currentSelected.Deselect();
-            currentSelected = null;
-
+            currentlySelected = null;
         }
     }
 }

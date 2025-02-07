@@ -1,6 +1,6 @@
 {
     "name":"com.isostopy.selection",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "displayName": "Isostopy Selection",
     "description": "Basic selection system.",
     "author": 
@@ -14,7 +14,7 @@
 		[
 			{
 				"displayName":"Usage",
-				"description":"Escena que muestra el funcionamiento.",
+				"description":"Escena que muestra un posible uso del paquete.",
 				"path":"Samples~/Usage"
 			}
 		]

@@ -13,7 +13,7 @@ namespace Isostopy.Selection
     public class HighlightObject : Highlight
     {
 
-        [SerializeField] protected SelectionMaterials selectionMaterials;
+        [SerializeField] protected HighlightMaterialData selectionMaterials;
         [SerializeField] GameObject mesh;
         Material defaultMaterial;
 
@@ -22,6 +22,8 @@ namespace Isostopy.Selection
         {
             rendererComponent = mesh.GetComponent<Renderer>();
             defaultMaterial = rendererComponent.material;
+
+			mesh.SetActive(false);
         }
 
         private void ShowMesh(bool value)
@@ -41,11 +43,11 @@ namespace Isostopy.Selection
 
         #region Binded Functions
 
-        override protected void Select(Selectable selectable)
+        override protected void Select(PointerInteractable selectable)
         {
             base.Select(selectable);
 
-            if (selectable.isSelected)
+            if ((selectable as Selectable).isSelected)
             {
                 ShowMesh(true);
             }
@@ -53,13 +55,13 @@ namespace Isostopy.Selection
             SetDefaultMaterial();
         }
 
-        override protected void Deselect(Selectable selectable)
+        override protected void Deselect(PointerInteractable selectable)
         {
             base.Deselect(selectable);
             ShowMesh(false);
         }
 
-        override protected void HoverEnter(Selectable selectable)
+        override protected void HoverEnter(PointerInteractable selectable)
         {
             base.HoverEnter(selectable);
             if (!useHover) return;
@@ -68,12 +70,12 @@ namespace Isostopy.Selection
             SetMaterial(selectionMaterials.hoverMaterial);
         }
 
-        override protected void HoverExit(Selectable selectable)
+        override protected void HoverExit(PointerInteractable selectable)
         {
             base.HoverExit(selectable);
             if (!useHover) return;
 
-            if (selectable.isSelected)
+            if ((selectable as Selectable).isSelected)
             {
                 SetDefaultMaterial();
             } 
