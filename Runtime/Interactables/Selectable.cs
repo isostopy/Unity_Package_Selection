@@ -10,11 +10,11 @@ namespace Isostopy.Selection
     public class Selectable : PointerInteractable
     {
 		/// Eventos
-		public UnityEvent<Selectable> onSelect;
-        public UnityEvent<Selectable> onDeselect;
+		[HideInInspector] public UnityEvent<Selectable> onSelect;
+		[HideInInspector] public UnityEvent<Selectable> onDeselect;
 
 		/// <summary> Si esta o no seleccionado este objeto. </summary>
-        [HideInInspector] public bool isSelected { get; private set; }
+        public bool isSelected { get; private set; }
 
 
 		// ----------------------------------------------------------------------------

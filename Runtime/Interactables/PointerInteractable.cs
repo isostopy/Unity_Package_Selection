@@ -13,8 +13,7 @@ namespace Isostopy.Selection
 		[HideInInspector] public UnityEvent<PointerInteractable> onHoverExit = new();
 		[HideInInspector] public UnityEvent<PointerInteractable> onPressDown = new();
 		[HideInInspector] public UnityEvent<PointerInteractable> onPressUp = new();
-
-		[Space] public UnityEvent<PointerInteractable> onClick = new();
+		[HideInInspector] public UnityEvent<PointerInteractable> onClick = new();
 
 
 		// ----------------------------------------------------------------------------
