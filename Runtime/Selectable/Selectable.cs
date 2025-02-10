@@ -32,6 +32,8 @@ namespace Isostopy.Selection
 		public void Select()
         {
             isSelected = true;
+
+			OnSelect();
             onSelect.Invoke(this);
         }
 		protected virtual void OnSelect() { }
@@ -41,6 +43,8 @@ namespace Isostopy.Selection
         public void Deselect()
         {
             isSelected = false;
+
+			OnDeselect();
             onDeselect.Invoke(this);
         }
 		protected virtual void OnDeselect() { }
