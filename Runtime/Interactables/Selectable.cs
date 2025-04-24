@@ -4,9 +4,19 @@ using UnityEngine.Events;
 namespace Isostopy.Selection
 {
 	/// <summary>
-	/// Objeto que puede seleccionarse y deseleccionarse. </summary>
+	/// Objeto que puede seleccionarse y deseleccionarse haciendo clic. </summary>
+	
+	/* TO DO:
+			- Quiza molaria tener un [serialize field] string selectionGroup;
+				si no esta vacio
+					solo puede haber elegido un selectable de cada grupo
+				si esta vacio
+					nada, con el campo vacio pueden estar elegidos todos los que queramos
+				Un static dictionary<string, selectable> que relaciona en id del grupo con que esta seleccionado en cada momento.
+					Si nos selecccionan y hay uno en nuestro grupo, hacemos deselect y nos ponemos a nostros.
+	 */
 
-	[AddComponentMenu("Isostopy/Selection/Selectable")] 
+	[AddComponentMenu("Isostopy/Selection/Selectable")]
     public class Selectable : PointerInteractable
     {
 		/// Eventos
@@ -27,7 +37,8 @@ namespace Isostopy.Selection
 				Deselect();
 		}
 
-		// --------------------------------------
+
+		// ----------------------------------------------------------------------------
 
 		public void Select()
         {

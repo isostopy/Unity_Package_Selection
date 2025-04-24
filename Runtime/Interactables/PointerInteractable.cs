@@ -1,60 +1,61 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Events;
 
 namespace Isostopy.Selection
 {
 	/// <summary>
-	/// Componente base con el que interactua el puntero. </summary>
+	/// Componente base con las funciones basicas con las que interactua el puntero. </summary>
 
 	[AddComponentMenu("Isostopy/Selection/Pointer Interactable")]
-	public class PointerInteractable : MonoBehaviour
+	public class PointerInteractable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler
 	{
-		[HideInInspector] public UnityEvent<PointerInteractable> onHoverEnter = new();
-		[HideInInspector] public UnityEvent<PointerInteractable> onHoverExit = new();
-		[HideInInspector] public UnityEvent<PointerInteractable> onPressDown = new();
-		[HideInInspector] public UnityEvent<PointerInteractable> onPressUp = new();
+		[HideInInspector] public UnityEvent<PointerInteractable> onEnter = new();
+		[HideInInspector] public UnityEvent<PointerInteractable> onExit = new();
+		[HideInInspector] public UnityEvent<PointerInteractable> onDown = new();
+		[HideInInspector] public UnityEvent<PointerInteractable> onUp = new();
 		[HideInInspector] public UnityEvent<PointerInteractable> onClick = new();
 
 
 		// ----------------------------------------------------------------------------
 
-		public void HoverEnter()
+		public void OnPointerEnter(PointerEventData eventData = null)
 		{
-			OnHoverEnter();
-			onHoverEnter.Invoke(this);
+			OnEnter();
+			onEnter.Invoke(this);
 		}
-		protected virtual void OnHoverEnter() { }
+		protected virtual void OnEnter() { }
 
 		// -----
 
-		public void HoverExit()
+		public void OnPointerExit(PointerEventData eventData = null)
 		{
-			OnHoverExit();
-			onHoverExit.Invoke(this);
+			OnExit();
+			onExit.Invoke(this);
 		}
-		protected virtual void OnHoverExit() { }
-
-		// -------------------
-
-		public void PressDown()
-		{
-			OnPressDown();
-			onPressDown.Invoke(this);
-		}
-		protected virtual void OnPressDown() { }
+		protected virtual void OnExit() { }
 
 		// -----
 
-		public void PressUp()
+		public void OnPointerDown(PointerEventData eventData = null)
 		{
-			OnPressUp();
-			onPressUp.Invoke(this);
+			OnDown();
+			onDown.Invoke(this);
 		}
-		protected virtual void OnPressUp() { }
-		
+		protected virtual void OnDown() { }
+
 		// -----
 
-		public void Click()
+		public void OnPointerUp(PointerEventData eventData = null)	
+		{
+			OnUp();
+			onUp.Invoke(this);
+		}
+		protected virtual void OnUp() { }
+
+		// -----
+
+		public void OnPointerClick(PointerEventData eventData = null)	
 		{
 			OnClick();
 			onClick.Invoke(this);

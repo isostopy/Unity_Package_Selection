@@ -14,16 +14,14 @@ namespace Isostopy.Selection
 
 		// ----------------------------------------------------------------------------
 
-		protected override PointerInteractable Raycast()
+		protected override GameObject Raycast()
 		{
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit hit;
 
 			if (Physics.Raycast(ray, out hit, maxDistance, layerMask))
 			{
-				var interactable = hit.collider.GetComponent<PointerInteractable>();
-				if (interactable != null)
-					return interactable;
+				return hit.transform.gameObject;
 			}
 
 			return null;
@@ -32,6 +30,9 @@ namespace Isostopy.Selection
 		protected override bool IsButtonPressed()
 		{
 			return Input.GetKey(KeyCode.Mouse0);
+
+			/* TO DO: Esto esta utilizando el input system antiguo, en el nuevo seria algo como:
+			 *		InputSystem.Mouse.current.leftButton.isPressed */
 		}
 	}
 }

@@ -1,19 +1,17 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Isostopy.Selection
 {
 	/// <summary>
 	/// Clase base para lanzar rayacast y disparar las funciones de un <see cref="PointerInteractable"/>. </summary>
+
 	public abstract class Raycaster : MonoBehaviour
 	{
-		private PointerInteractable hoveringObject = null;
+		private GameObject hoveringObject = null;
 
-		private PointerInteractable pressedObject = null;
+		private GameObject pressedObject = null;
 		protected bool isPressing { get; private set; }
-
-		/* TO DO:
-		 *		- Esto solo permite que haya un unico componente PointerInteractable por objeto.
-		 *			quiza lo suyo seria permitir que en un mismo objeto haya todos los que hagan falta y todos reciban los eventos al apuntar a su game object. */
 
 
 		// ----------------------------------------------------------------------------
@@ -24,41 +22,107 @@ namespace Isostopy.Selection
 			var newHoveringObject = Raycast();
 			if (newHoveringObject != hoveringObject)
 			{
-				if (hoveringObject != null) { hoveringObject.HoverExit(); }
-				hoveringObject = newHoveringObject;
-				if (hoveringObject != null) { hoveringObject.HoverEnter(); }
+				ExitPrevHover();
+				EnterNewHover(newHoveringObject);
 			}
 
 			// Press
 			var wasPressing = isPressing;
 			isPressing = IsButtonPressed();
 
-			if (isPressing == true && wasPressing == false)
-			{
-				pressedObject = hoveringObject;
-				if (pressedObject != null) { pressedObject.PressDown(); }
-			}
-			if (isPressing == false && wasPressing == true)
-			{
-				if (pressedObject != null)
-				{
-					pressedObject.PressUp();
+			var wasPressedThisFrame = isPressing == true && wasPressing == false;
+			var wasReleaseThisFrame = isPressing == false && wasPressing == true;
 
-					// Click
-					if (pressedObject == hoveringObject)
-						pressedObject.Click();
-				}
-				pressedObject = null;
+			if (wasPressedThisFrame)
+			{
+				PressDown(hoveringObject);
+			}
+			if (wasReleaseThisFrame)
+			{
+				PressUp();
+			}
+		}
+
+		// -----
+
+		private void ExitPrevHover()
+		{
+			if (hoveringObject == null)
+				return;
+
+			var interactables = hoveringObject.GetComponents<IPointerExitHandler>();
+			foreach(var interactable in interactables)
+			{
+				interactable.OnPointerExit(null);
+			}
+
+			hoveringObject = null;
+		}
+
+		private void EnterNewHover(GameObject newHoveringObject)
+		{
+			hoveringObject = newHoveringObject;
+			if (hoveringObject == null)
+				return;
+
+			var interactables = hoveringObject.GetComponents<IPointerEnterHandler>();
+			foreach (var interactable in interactables)
+			{
+				interactable.OnPointerEnter(null);
+			}
+		}
+
+		// -----
+
+		private void PressDown(GameObject newPressingObject)
+		{
+			pressedObject = newPressingObject;
+			if (pressedObject == null)
+				return;
+
+			var interactables = hoveringObject.GetComponents<IPointerDownHandler>();
+			foreach (var interactable in interactables)
+			{
+				interactable.OnPointerDown(null);
+			}
+		}
+
+		private void PressUp()
+		{
+			if (pressedObject == null)
+				return;
+
+			var interactables = hoveringObject.GetComponents<IPointerUpHandler>();
+			foreach (var interactable in interactables)
+			{
+				interactable.OnPointerUp(null);
+			}
+
+			// Click
+			if (pressedObject == hoveringObject)
+				Click(pressedObject);
+
+			pressedObject = null;
+		}
+
+		// -----
+
+		private void Click(GameObject objectToClick)
+		{
+			var interactables = objectToClick.GetComponents<IPointerClickHandler>();
+			foreach (var interactable in interactables)
+			{
+				interactable.OnPointerClick(null);
 			}
 		}
 
 
 		// ----------------------------------------------------------------------------
 
-		/// <summary> Devuelve el PointerInteractable al que se esta apuntando. </summary>
-		protected abstract PointerInteractable Raycast();
+		/// <summary> Devuelve el GameObject al que se esta apuntando. </summary>
+		protected abstract GameObject Raycast();
 
-		/// <summary> Inidica si se esta pulsando el boton con el que se hace click. </summary>
+		/// <summary> Indica si se esta pulsando el boton con el que se hace click. </summary>
 		protected abstract bool IsButtonPressed();
 	}
 }

@@ -14,7 +14,7 @@ namespace Isostopy.Selection
     {
 
         [SerializeField] protected HighlightMaterialData selectionMaterials;
-        [SerializeField] GameObject mesh;
+        [SerializeField] UnityEngine.GameObject mesh;
         Material defaultMaterial;
 
 
