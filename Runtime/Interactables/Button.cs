@@ -20,6 +20,7 @@ namespace Isostopy.Selection
 		[SerializeField] UnityEvent publicClickEvent = new();
 
 		private bool hovering = false;
+		private bool pressed = false;
 
 
 		// ----------------------------------------------------------------------------
@@ -35,6 +36,17 @@ namespace Isostopy.Selection
 
 		private void OnValidate()
 		{
+			if (targetGraphic != null)
+				targetGraphic.color = normalColor;
+		}
+
+
+		// ----------------------------------------------------------------------------
+
+		private void OnDisable()
+		{
+			hovering = false;
+			pressed = false;
 			targetGraphic.color = normalColor;
 		}
 
@@ -55,11 +67,14 @@ namespace Isostopy.Selection
 
 		protected override void OnPressDown()
 		{
+			pressed = true;
 			targetGraphic.color = pressedColor;
 		}
 
 		protected override void OnPressUp()
 		{
+			pressed = false;
+
 			if (hovering)
 				targetGraphic.color = hoverColor;
 			else
@@ -69,6 +84,50 @@ namespace Isostopy.Selection
 		protected override void OnClick()
 		{
 			publicClickEvent.Invoke();
+		}
+
+
+		// ----------------------------------------------------------------------------
+
+		public Graphic TargetGraphic
+		{
+			get => targetGraphic;
+			set
+			{
+				targetGraphic = value;
+				if (targetGraphic == null)
+					return;
+
+				if (pressed && hovering)
+					targetGraphic.color = pressedColor;
+				else if (hovering)
+					targetGraphic.color = hoverColor;
+				else
+					targetGraphic.color = normalColor;
+			}
+		}
+
+		public Color NormalColor
+		{
+			get => normalColor;
+			set
+			{
+				normalColor = value;
+				if (!hovering && !pressed && targetGraphic != null)
+					targetGraphic.color = normalColor;
+			}
+		}
+
+		public Color HoverColor
+		{
+			get => hoverColor;
+			set => hoverColor = value;
+		}
+
+		public Color PressedColor
+		{
+			get => pressedColor;
+			set => pressedColor = value;
 		}
 	}
 }
