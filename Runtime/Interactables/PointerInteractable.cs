@@ -5,7 +5,7 @@ using UnityEngine.Events;
 namespace Isostopy.Selection
 {
 	/// <summary>
-	/// Componente base con las funciones basicas con las que interactua el puntero. </summary>
+	/// Componente con las funciones basicas con las que interactua el puntero. </summary>
 
 	[AddComponentMenu("Isostopy/Selection/Pointer Interactable")]
 	public class PointerInteractable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler

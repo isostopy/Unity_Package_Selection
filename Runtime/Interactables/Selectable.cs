@@ -14,8 +14,8 @@ namespace Isostopy.Selection
 		public bool isSelected { get; private set; }
 
 		/// Eventos
-		[HideInInspector] public UnityEvent<Selectable> onThisSelected = new();
-		[HideInInspector] public UnityEvent<Selectable> onThisDeselected = new();
+		[HideInInspector] public UnityEvent<Selectable> onSelected = new();
+		[HideInInspector] public UnityEvent<Selectable> onDeselected = new();
 
 		/// Grupos de seleccion.
 		[Space]
@@ -64,7 +64,7 @@ namespace Isostopy.Selection
 			isSelected = true;
 
 			OnSelect();
-            onThisSelected.Invoke(this);
+            onSelected.Invoke(this);
         }
 		protected virtual void OnSelect() { }
 
@@ -80,7 +80,7 @@ namespace Isostopy.Selection
 			isSelected = false;
 
 			OnDeselect();
-            onThisDeselected.Invoke(this);
+            onDeselected.Invoke(this);
 		}
 		protected virtual void OnDeselect() { }
 

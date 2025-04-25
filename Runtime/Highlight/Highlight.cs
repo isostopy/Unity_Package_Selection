@@ -3,64 +3,117 @@ using UnityEngine;
 namespace Isostopy.Selection
 {
 	/// <summary>
-	/// Clase base de los componentes que dan feedback al usuario cuando se selecciona o hace hover un <see cref="Selectable"/>. </summary>
+	/// Clase base de los componentes que dan feedback al usuario cuando interactua con un <see cref="PointerInteractable"/>. </summary>
 
-	[RequireComponent(typeof (Selectable))]
+	[RequireComponent(typeof (PointerInteractable))]
     public abstract class Highlight : MonoBehaviour
     {
-        protected Selectable selectable;
+		/// <summary> El objeto que resalta este highlight. </summary>
+        protected PointerInteractable interactable { get; private set; }
 
-		// Cosas que este componente no utiliza, pero alguno de sus herederos si.
-		// TO DO: Sus herederos no tienen por que usarlas, pero aun asi estan aqui definidas. Por eso lo suyo quiza seria que no estuvieran aqui, si no en sus hijos.
-        public bool useHover = true;
-        protected Renderer rendererComponent;
+		protected bool isHovering { get; private set; }
+		protected bool isPressed { get; private set; }
+		protected bool isSelected { get; private set; }
 
 
 		// ----------------------------------------------------------------------------
-		#region Subscription Management
 
 		protected virtual void Awake()
 		{
-            selectable = GetComponent<Selectable>();
+            interactable = GetComponent<Selectable>();
 		}
 
 		protected virtual void OnEnable()
         {
-            selectable.onThisSelected.AddListener(Select);
-            selectable.onThisDeselected.AddListener(Deselect);
-            selectable.onEnter.AddListener(HoverEnter);
-            selectable.onExit.AddListener(HoverExit);
-        }
+            interactable.onEnter.AddListener(OnPointerEnter);
+            interactable.onExit.AddListener(OnPointerExit);
+			interactable.onDown.AddListener(OnPointerDown);
+			interactable.onUp.AddListener(OnPointerUp);
+
+			if (interactable is Selectable)
+			{
+				var selectable = interactable as Selectable;
+				selectable.onSelected.AddListener(OnSelect);
+				selectable.onDeselected.AddListener(OnDeselect); 
+			}
+		}
 
 		protected virtual void OnDisable()
         {
-            selectable.onThisSelected.RemoveListener(Select);
-            selectable.onThisDeselected.RemoveListener(Deselect);
-            selectable.onEnter.RemoveListener(HoverEnter);
-            selectable.onExit.RemoveListener(HoverExit);
-        }
+            interactable.onEnter.RemoveListener(OnPointerEnter);
+            interactable.onExit.RemoveListener(OnPointerExit);
+			interactable.onDown.RemoveListener(OnPointerDown);
+			interactable.onUp.RemoveListener(OnPointerUp);
 
-		#endregion
+			if (interactable is Selectable)
+			{
+				var selectable = interactable as Selectable;
+				selectable.onSelected.RemoveListener(OnSelect);
+				selectable.onDeselected.RemoveListener(OnDeselect);
+			}
+		}
 
 
 		// ----------------------------------------------------------------------------
-		#region Binded Functions
 
-		protected virtual void HoverEnter(PointerInteractable selectable) { }
+		private void OnPointerEnter(PointerInteractable thisInteractable)
+		{
+			isHovering = true;
+			ShowAsHover();
+		}
 
-		protected virtual void HoverExit(PointerInteractable selectable) { }
+		private void OnPointerExit(PointerInteractable thisInteractable)
+		{
+			isHovering = false;
+			if (isSelected == false)
+				ShowAsNormal();
+			else
+				ShowAsSelected();
+		}
 
-		protected virtual void Select(PointerInteractable selectable) { }
+		// -----
 
-        protected virtual void Deselect(PointerInteractable selectable) { }
+		private void OnPointerDown(PointerInteractable thisInteractable)
+		{
+			isPressed = true;
+			ShowAsPressed();
+		}
 
-        #endregion
-    }
+		private void OnPointerUp(PointerInteractable thisInteractable)
+		{
+			isPressed = false;
+
+			if (isSelected)
+				ShowAsSelected();
+			else if (isHovering)
+				ShowAsHover();
+			else
+				ShowAsNormal();
+		}
+
+		// -----
+
+		private void OnSelect(Selectable thisSelectable)
+		{
+			isSelected = true;
+			ShowAsSelected();
+		}
+
+		private void OnDeselect(Selectable thisSelectable)
+		{
+			isSelected = false;
+			if (isHovering)
+				ShowAsHover();
+			else
+				ShowAsNormal();
+		}
 
 
-	// ================================================================================
+		// ----------------------------------------------------------------------------
 
-
-
-
+		protected abstract void ShowAsNormal();
+		protected virtual void ShowAsHover() { }
+		protected virtual void ShowAsPressed() { }
+		protected virtual void ShowAsSelected() { }
+	}
 }

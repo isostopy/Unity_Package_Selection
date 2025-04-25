@@ -6,7 +6,8 @@ namespace Isostopy.Selection
 	public class HighlightColorData : ScriptableObject
 	{
 		[Space]
-		public Color hoverColor;
-		public Color selectedColor;
+		public Color hoverColor = Color.white;
+		public Color pressedColor = Color.black;
+		public Color selectedColor = Color.grey;
 	}
 }

@@ -7,6 +7,7 @@ namespace Isostopy.Selection
 	{
 		[Space]
 		public Material hoverMaterial;
+		public Material pressedMaterial;
 		public Material selectedMaterial;
 	}
 }
