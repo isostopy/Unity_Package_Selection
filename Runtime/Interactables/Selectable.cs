@@ -1,30 +1,44 @@
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections.Generic;
 
 namespace Isostopy.Selection
 {
 	/// <summary>
 	/// Objeto que puede seleccionarse y deseleccionarse haciendo clic. </summary>
-	
-	/* TO DO:
-			- Quiza molaria tener un [serialize field] string selectionGroup;
-				si no esta vacio
-					solo puede haber elegido un selectable de cada grupo
-				si esta vacio
-					nada, con el campo vacio pueden estar elegidos todos los que queramos
-				Un static dictionary<string, selectable> que relaciona en id del grupo con que esta seleccionado en cada momento.
-					Si nos selecccionan y hay uno en nuestro grupo, hacemos deselect y nos ponemos a nostros.
-	 */
 
 	[AddComponentMenu("Isostopy/Selection/Selectable")]
     public class Selectable : PointerInteractable
     {
-		/// Eventos
-		[HideInInspector] public UnityEvent<Selectable> onSelect;
-		[HideInInspector] public UnityEvent<Selectable> onDeselect;
-
 		/// <summary> Si esta o no seleccionado este objeto. </summary>
-        public bool isSelected { get; private set; }
+		public bool isSelected { get; private set; }
+
+		/// Eventos
+		[HideInInspector] public UnityEvent<Selectable> onThisSelected = new();
+		[HideInInspector] public UnityEvent<Selectable> onThisDeselected = new();
+
+		/// Grupos de seleccion.
+		[Space]
+		[SerializeField] private SelectableGroup selectableGroup = null;
+		private static SelectableGroup lastGroupAssignedInInspector = null;
+
+		private static Dictionary<SelectableGroup, Selectable> selectedItemsByGroup = new();
+
+
+		// ----------------------------------------------------------------------------
+
+		/// Un truquito para facilitarnos la vida trabajando desde el inspector,
+		/// si escribes un grupo en selectable, los que añadas despues tendran el mismo grupo.
+
+		protected virtual void OnValidate()
+		{
+			lastGroupAssignedInInspector = selectableGroup;
+		}
+
+		protected virtual void Reset()
+		{
+			selectableGroup = lastGroupAssignedInInspector;
+		}
 
 
 		// ----------------------------------------------------------------------------
@@ -42,10 +56,15 @@ namespace Isostopy.Selection
 
 		public void Select()
         {
-            isSelected = true;
+			if (selectableGroup != null)
+			{
+				ChangeGroupSelectionTo(this);
+			}
+
+			isSelected = true;
 
 			OnSelect();
-            onSelect.Invoke(this);
+            onThisSelected.Invoke(this);
         }
 		protected virtual void OnSelect() { }
 
@@ -53,11 +72,37 @@ namespace Isostopy.Selection
 
         public void Deselect()
         {
-            isSelected = false;
+			if (selectableGroup != null)
+			{
+				ChangeGroupSelectionTo(null);
+			}
+
+			isSelected = false;
 
 			OnDeselect();
-            onDeselect.Invoke(this);
-        }
+            onThisDeselected.Invoke(this);
+		}
 		protected virtual void OnDeselect() { }
+
+
+		// ----------------------------------------------------------------------------
+
+		private void ChangeGroupSelectionTo(Selectable newSelectable)
+		{
+			if (newSelectable != null)
+			{
+				if (selectedItemsByGroup.ContainsKey(selectableGroup))
+					selectedItemsByGroup[selectableGroup].Deselect();
+
+				selectedItemsByGroup[selectableGroup] = newSelectable;
+			}
+			else
+			{
+				selectedItemsByGroup.Remove(selectableGroup);
+			}
+
+			selectableGroup.onSelectableChanged.Invoke(newSelectable);
+		}
+
 	}
 }

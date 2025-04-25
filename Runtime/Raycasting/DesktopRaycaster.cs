@@ -3,6 +3,10 @@ using UnityEngine;
 namespace Isostopy.Selection
 {
 	/// <summary> Raycaster que lanza el rayo a la posicion del raton. </summary>
+	
+	/* Para esto probableme es mejor simplemente añadir el componente de Unity PhysicsRaycaster a la camara,
+	 *		y dejar que todo funcione con los sistemas por defecto del motor.
+			Pero es un buen ejemplo de como montar una clase heredando del Raycaster que incluye el paquete. */
 
 	[AddComponentMenu("Isostopy/Selection/Desktop Raycaster")] 
 	public class DesktopRaycaster : Raycaster
@@ -31,7 +35,7 @@ namespace Isostopy.Selection
 		{
 			return Input.GetKey(KeyCode.Mouse0);
 
-			/* TO DO: Esto esta utilizando el input system antiguo, en el nuevo seria algo como:
+			/* Esto esta utilizando el input system antiguo, en el nuevo seria algo como:
 			 *		InputSystem.Mouse.current.leftButton.isPressed */
 		}
 	}

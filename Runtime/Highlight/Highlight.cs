@@ -26,16 +26,16 @@ namespace Isostopy.Selection
 
 		protected virtual void OnEnable()
         {
-            selectable.onSelect.AddListener(Select);
-            selectable.onDeselect.AddListener(Deselect);
+            selectable.onThisSelected.AddListener(Select);
+            selectable.onThisDeselected.AddListener(Deselect);
             selectable.onEnter.AddListener(HoverEnter);
             selectable.onExit.AddListener(HoverExit);
         }
 
 		protected virtual void OnDisable()
         {
-            selectable.onSelect.RemoveListener(Select);
-            selectable.onDeselect.RemoveListener(Deselect);
+            selectable.onThisSelected.RemoveListener(Select);
+            selectable.onThisDeselected.RemoveListener(Deselect);
             selectable.onEnter.RemoveListener(HoverEnter);
             selectable.onExit.RemoveListener(HoverExit);
         }
