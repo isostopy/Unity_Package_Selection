@@ -92,7 +92,7 @@ namespace Isostopy.Selection
 			if (pressedObject == null)
 				return;
 
-			var interactables = hoveringObject.GetComponents<IPointerUpHandler>();
+			var interactables = pressedObject.GetComponents<IPointerUpHandler>();
 			foreach (var interactable in interactables)
 			{
 				interactable.OnPointerUp(null);
