@@ -20,7 +20,7 @@ namespace Isostopy.Selection
 
 		protected virtual void Awake()
 		{
-            interactable = GetComponent<Selectable>();
+            interactable = GetComponent<PointerInteractable>();
 		}
 
 		protected virtual void OnEnable()
