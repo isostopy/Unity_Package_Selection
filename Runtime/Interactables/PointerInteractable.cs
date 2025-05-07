@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.Events;
 
 namespace Isostopy.Selection
@@ -8,7 +7,7 @@ namespace Isostopy.Selection
 	/// Componente con las funciones basicas con las que interactua el puntero. </summary>
 
 	[AddComponentMenu("Isostopy/Selection/Pointer Interactable")]
-	public class PointerInteractable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler
+	public class PointerInteractable : MonoBehaviour
 	{
 		[HideInInspector] public UnityEvent<PointerInteractable> onEnter = new();
 		[HideInInspector] public UnityEvent<PointerInteractable> onExit = new();
@@ -19,7 +18,7 @@ namespace Isostopy.Selection
 
 		// ----------------------------------------------------------------------------
 
-		public void OnPointerEnter(PointerEventData eventData = null)
+		public void OnPointerEnter()
 		{
 			OnEnter();
 			onEnter.Invoke(this);
@@ -28,7 +27,7 @@ namespace Isostopy.Selection
 
 		// -----
 
-		public void OnPointerExit(PointerEventData eventData = null)
+		public void OnPointerExit()
 		{
 			OnExit();
 			onExit.Invoke(this);
@@ -37,7 +36,7 @@ namespace Isostopy.Selection
 
 		// -----
 
-		public void OnPointerDown(PointerEventData eventData = null)
+		public void OnPointerDown()
 		{
 			OnDown();
 			onDown.Invoke(this);
@@ -46,7 +45,7 @@ namespace Isostopy.Selection
 
 		// -----
 
-		public void OnPointerUp(PointerEventData eventData = null)	
+		public void OnPointerUp()	
 		{
 			OnUp();
 			onUp.Invoke(this);
@@ -55,7 +54,7 @@ namespace Isostopy.Selection
 
 		// -----
 
-		public void OnPointerClick(PointerEventData eventData = null)	
+		public void OnPointerClick()	
 		{
 			OnClick();
 			onClick.Invoke(this);
