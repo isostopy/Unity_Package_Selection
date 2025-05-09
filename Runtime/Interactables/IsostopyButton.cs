@@ -7,7 +7,7 @@ namespace Isostopy.Selection
 	/// <summary>
 	/// Componente que imita el funcionamiento del boton de Unity pero usando las funciones del paquete de seleccion. </summary>
 
-	[AddComponentMenu("Isostopy/Selection/Button")]
+	[AddComponentMenu("Isostopy/Selection/IsostopyButton")]
 	public class IsostopyButton : PointerInteractable
 	{
 		[Space]
