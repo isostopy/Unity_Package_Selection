@@ -95,15 +95,7 @@ namespace Isostopy.Selection
 			set
 			{
 				targetGraphic = value;
-				if (targetGraphic == null)
-					return;
-
-				if (pressed && hovering)
-					targetGraphic.color = pressedColor;
-				else if (hovering)
-					targetGraphic.color = hoverColor;
-				else
-					targetGraphic.color = normalColor;
+				UpdateGraphicColor();
 			}
 		}
 
@@ -113,21 +105,41 @@ namespace Isostopy.Selection
 			set
 			{
 				normalColor = value;
-				if (!hovering && !pressed && targetGraphic != null)
-					targetGraphic.color = normalColor;
+				UpdateGraphicColor();
 			}
 		}
 
 		public Color HoverColor
 		{
 			get => hoverColor;
-			set => hoverColor = value;
+			set
+			{
+				hoverColor = value;
+				UpdateGraphicColor();
+			}
 		}
 
 		public Color PressedColor
 		{
 			get => pressedColor;
-			set => pressedColor = value;
+			set
+			{
+				pressedColor = value;
+				UpdateGraphicColor();
+			}
+		}
+
+		private void UpdateGraphicColor()
+		{
+			if (targetGraphic == null)
+				return;
+
+			if (pressed && hovering)
+				targetGraphic.color = pressedColor;
+			else if (hovering)
+				targetGraphic.color = hoverColor;
+			else
+				targetGraphic.color = normalColor;
 		}
 	}
 }
