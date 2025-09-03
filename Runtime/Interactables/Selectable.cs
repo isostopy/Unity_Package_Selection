@@ -89,20 +89,28 @@ namespace Isostopy.Selection
 
 		private void ChangeGroupSelectionTo(Selectable newSelectable)
 		{
-			if (newSelectable != null)
+			if (newSelectable == null)
+			{
+				selectedItemsByGroup.Remove(selectableGroup);
+			}
+			else
 			{
 				if (selectedItemsByGroup.ContainsKey(selectableGroup))
 					selectedItemsByGroup[selectableGroup].Deselect();
 
 				selectedItemsByGroup[selectableGroup] = newSelectable;
 			}
-			else
-			{
-				selectedItemsByGroup.Remove(selectableGroup);
-			}
 
 			selectableGroup.onSelectableChanged.Invoke(newSelectable);
 		}
 
+		/// <summary>
+		/// Obten el objeto seleccionado de un <see cref="SelectableGroup"/>. </summary>
+		public static Selectable GetSelectedInGroup(SelectableGroup group)
+		{
+			if (selectedItemsByGroup.ContainsKey(group))
+				return selectedItemsByGroup[group];
+			return null;
+		}
 	}
 }
