@@ -14,7 +14,7 @@ namespace Isostopy.Selection.Viroo.Editor
 
 			EditorGUILayout.Space();
 			EditorGUILayout.HelpBox(
-				"Este componente necesita tener importado el paquete de Viroo y haber añadido el scripting define symbol VIROO en las player settings.\n" +
+				"Este componente necesita tener importado el paquete de Viroo y haber añadido el scripting define symbol \"VIROO\" en las player settings.\n" +
 				"Asegurate de haber añadido el paquete de viroo y pulsa el boton para añadir el define a las player settings.",
 				MessageType.Info);
 			if (GUILayout.Button("#define VIROO"))
