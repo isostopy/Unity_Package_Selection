@@ -7,6 +7,7 @@ namespace Isostopy.Selection
 	/// Componente que pasa los eventos del puntero de Unity al <see cref="PointerInteractable"/> de Isostopy. </summary>
 
 	[RequireComponent(typeof(PointerInteractable))]
+	[AddComponentMenu("Isostopy/Selection/Unity To IsostopyInteractable")]
 	public class UnityToIsostopyInteractable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler
 	{
 		private PointerInteractable interactable = null;

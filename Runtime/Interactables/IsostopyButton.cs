@@ -5,7 +5,8 @@ using UnityEngine.Events;
 namespace Isostopy.Selection
 {
 	/// <summary>
-	/// Componente que imita el funcionamiento del boton de Unity pero usando las funciones del paquete de seleccion. </summary>
+	/// Componente que imita (malamente) el funcionamiento del boton de Unity pero usando las funciones del paquete de seleccion. <br/>
+	/// Cuando puedas usa los botones normales de Unity. </summary>
 
 	[AddComponentMenu("Isostopy/Selection/IsostopyButton")]
 	public class IsostopyButton : PointerInteractable

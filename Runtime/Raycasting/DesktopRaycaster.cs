@@ -8,7 +8,6 @@ namespace Isostopy.Selection
 	 *		y dejar que todo funcione con los sistemas por defecto del motor.
 			Pero es un buen ejemplo de como montar una clase heredando del Raycaster que incluye el paquete. */
 
-	[AddComponentMenu("Isostopy/Selection/Desktop Raycaster")] 
 	public class DesktopRaycaster : Raycaster
 	{
 		[Space]

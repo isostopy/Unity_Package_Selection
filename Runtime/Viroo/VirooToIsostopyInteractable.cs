@@ -13,6 +13,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 #if VIROO
 [RequireComponent (typeof(PointerInteractable))]
 [RequireComponent (typeof(XRSimpleInteractable))]
+[AddComponentMenu("Isostopy/Selection/Viroo To IsostopyInteractable")]
 #endif
 	public class VirooToIsostopyInteractable : MonoBehaviour
 	{
