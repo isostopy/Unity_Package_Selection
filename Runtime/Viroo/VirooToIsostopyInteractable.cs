@@ -33,31 +33,31 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 		virooInteractable.hoverEntered.AddListener(VirooHoverEnter);
 		virooInteractable.hoverExited.AddListener(VirooHoverExit);
-		//virooInteractable.activated.AddListener(VirooActivate);
-		//virooInteractable.deactivated.AddListener(VirooDeactivate);
-		/* DESCOMENTAR ESTO CUANDO LO ARREGLEN DE VIROO.
-			La ultima vez que probamos añadir el listener en cogido funcionaba en local
-			pero los eventos de que se habia hecho clic no se propagaban en red.
-			Si añades los listeler a mano en el editor si que funciona en red, 
-			asi que de momento hemos añadido un clic derecho -> añadir listeners que facilite el trabajo pero que no es ideal. */
-	}
+		virooInteractable.activated.AddListener(VirooActivate);
+		virooInteractable.deactivated.AddListener(VirooDeactivate);
+			/* DESCOMENTAR ESTO CUANDO LO ARREGLEN DE VIROO.
+				La ultima vez que probamos, añadir el listener en cogido funcionaba en local
+				pero los eventos de que se habia hecho clic no se propagaban en red.
+				Si añades los listeler a mano en el editor si que funciona en red, 
+				asi que de momento hemos añadido un clic derecho -> añadir listeners que facilite el trabajo pero que no es ideal. */
+		}
 
 
 	// ----------------------------------------------------------------------------
 
 	private void VirooHoverEnter(HoverEnterEventArgs args)
 	{
-		isostopyInteractable.HoverEnter();
+		isostopyInteractable.OnPointerEnter();
 	}
 
 	private void VirooHoverExit(HoverExitEventArgs args)
 	{
-		isostopyInteractable.HoverExit();
+		isostopyInteractable.OnPointerExit();
 
 		if (pressed)
 		{
 			pressed = false;
-			isostopyInteractable.PressUp();
+			isostopyInteractable.OnPointerUp();
 			// Al sacar el raton del objeto hacemos como que el usuario al levantado el boton.
 			// Porque cuando se levanta el boton sin estar apuntado a este objeto, Viroo no nos notifica.
 		}
@@ -67,7 +67,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 	{
 		// Esta funcion se llama cuando se hace click sobre el objeto.
 
-		isostopyInteractable.PressDown();
+		isostopyInteractable.OnPointerDown();
 		pressed = true;
 	}
 
@@ -79,8 +79,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 		if (pressed)
 		{
 			pressed = false;
-			isostopyInteractable.PressUp();
-			isostopyInteractable.Click();
+			isostopyInteractable.OnPointerUp();
+			isostopyInteractable.OnPointerClick();
 		}
 	}
 	

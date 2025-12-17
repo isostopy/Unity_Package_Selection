@@ -1,13 +1,11 @@
 {
-    "name": "Isostopy.Selection.Editor",
+    "name": "Isostopy.Selection.Viroo",
     "rootNamespace": "",
     "references": [
-        "GUID:4d16b74d7cfb0bc4da98ff59b88a761b",
-        "GUID:2ed1fc3aec50bdc418bd965d04489e52"
+        "Isostopy.Selection",
+        "Unity.XR.Interaction.Toolkit"
     ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
